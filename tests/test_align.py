@@ -518,5 +518,13 @@ class TestFewSources(unittest.TestCase):
     #    ...
 
 
+class TestWCS(unittest.TestCase):
+    def setUp(self):
+        ...
+
+    def test_estimate_wcs(self):
+        aa.estimate_wcs(None, None)
+
+
 if __name__ == "__main__":
     unittest.main()

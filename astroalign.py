@@ -56,8 +56,8 @@ __all__ = [
     "find_transform",
     "matrix_transform",
     "register",
+    "estimate_wcs",
 ]
-
 
 import numpy as _np
 
@@ -205,6 +205,25 @@ class _MatchTransform:
         return error
 
 
+def estimate_wcs(source, pointing, fov):
+    """Given an approximate pointing and field of view (fov) of a source,
+    estimate WCS of the field by querying nearby stars and matching with source.
+
+    Return WCS object.
+
+    Args:
+        source (array-like): Either a numpy array of the source image or an
+        iterable of (x, y) coordinates of the source positions.
+        pointing: A (RA, Dec) tuple of the approximate center pointing of the
+        field.
+        fov: An approximate field of view. Astropy units or decimal degrees.
+
+    Returns:
+        An Astropy WCS object of the field.
+    """
+    raise NotImplementedError
+
+
 def find_transform(source, target):
     """Estimate the transform between ``source`` and ``target``.
 
@@ -215,10 +234,10 @@ def find_transform(source, target):
 
     Args:
         source (array-like): Either a numpy array of the source image to be
-            transformed or an interable of (x, y) coordinates of the target
+            transformed or an iterable of (x, y) coordinates of the target
             control points.
         target (array-like): Either a numpy array of the target (destination)
-            image or an interable of (x, y) coordinates of the target
+            image or an iterable of (x, y) coordinates of the target
             control points.
 
     Returns:
